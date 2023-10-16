@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{data.name}}</h1>
+<div mat-dialog-content>
+  <p *ngIf="data.expire; else elseBlock" class="description">{{ data.expire | async | timeFormat}}</p>
+  <ng-template #elseBlock><p class="description">Hit your Credentials</p></ng-template>
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="data.username">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="data.password">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" (click)="loginHandler(data)" cdkFocusInitial>Connect</button>
+</div>

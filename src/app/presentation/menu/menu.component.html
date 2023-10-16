@@ -1,0 +1,34 @@
+
+<button mat-button (click)="goToPage('')">Home</button>
+
+<button mat-button [matMenuTriggerFor]="adminboard">Adminboard</button>
+
+<mat-menu #adminboard="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates">{{ 'Boards' }}</button>
+  <button mat-menu-item (click)="goToPage('Page1')">Configuration</button>
+</mat-menu>
+
+<mat-menu #vertebrates="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="Admin">Administration</button>
+  <button mat-menu-item (click)="goToPage('Page2/a')">a</button>
+  <button mat-menu-item (click)="goToPage('Page2/b')">b</button>
+  <button mat-menu-item (click)="goToPage('Page2/c')">c</button>
+</mat-menu>
+
+<mat-menu #Admin="matMenu">
+  <button mat-menu-item (click)="goToPage('Page3/1')">1</button>
+  <button mat-menu-item (click)="goToPage('Page3/2')">2</button>
+  <button mat-menu-item (click)="goToPage('Page3/3')">3</button>
+  <button mat-menu-item (click)="goToPage('Page3/4')">4</button>
+  <button mat-menu-item (click)="goToPage('Page3/5')">5</button>
+</mat-menu>
+
+<button mat-button (click)="goToPage('onboarding')">Onboarding</button>
+
+<button *ngIf="!user; else elseTemplate" mat-button (click)="openDialog()" style="float: right;">Login</button>
+<ng-template #elseTemplate>
+  <button mat-button [matMenuTriggerFor]="loginBoard"  style="float: right;">{{ user?.fullName }}</button>
+  <mat-menu #loginBoard="matMenu">
+    <button mat-menu-item (click)="disconnect()">Disconnect</button>
+  </mat-menu>
+</ng-template>
